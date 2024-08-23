@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <iostream>
+#include <string.h>
 
 class SimpleSocket
 {
@@ -11,12 +13,11 @@ class SimpleSocket
         int socket_fd;
         struct sockaddr_in address;
         int connection;
+        int listening;
 
     public:
-        SimpleSocket(int domain, int socket_type, int protocol, int port, u_long interface);
+        SimpleSocket(int domain, int socket_type, int protocol, int port, u_long interface, int backlog);
 
-        // member functions
-        void start_listening(int backlog);
         //getters
         struct sockaddr_in get_address();
         int get_socket();
@@ -25,9 +26,9 @@ class SimpleSocket
 };
 
 /**
- * 1. Create a socket; -> SimpleSocket Class
- * 2. Bind a socket to network; -> SimpleSocket Class
- * 3. Listening socket;
+ * 1. Create a socket; -> SimpleSocket Class -> done
+ * 2. Bind a socket to network; -> SimpleSocket Class -> done
+ * 3. Listening socket; -> done
  * 
  * a. Add exceptions to a SimpleSocket Class;
  */

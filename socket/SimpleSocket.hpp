@@ -3,33 +3,37 @@
 
 #include <stdio.h>
 #include <sys/socket.h>
+#include <sys/types.h>
 #include <netinet/in.h>
 #include <iostream>
 #include <string.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <cstdlib>
+
+#define BACKLOG 10
 
 class SimpleSocket
 {
     private:
+        struct addrinfo hints, *add_info;
         int socket_fd;
-        struct sockaddr_in address;
-        int connection;
-        int listening;
+        const char *node;    // e.g. "www.example.com" or IP
+        const char *service; // e.g. "http" or port number
+
+        int fill_addrinfo(const char *node, const char *service);
+        int create_socket();
+        int listening_socket();
 
     public:
-        SimpleSocket(int domain, int socket_type, int protocol, int port, u_long interface, int backlog);
+        SimpleSocket(const char *input_node, const char *input_service);
 
         //getters
-        struct sockaddr_in get_address();
+        const struct addrinfo &get_address() const;
         int get_socket();
-        int get_connection();
-        
 };
 
-/**
- * 1. Create a socket; -> SimpleSocket Class -> done
- * 2. Bind a socket to network; -> SimpleSocket Class -> done
- * 3. Listening socket; -> done
- * 
+/*
  * a. Add exceptions to a SimpleSocket Class;
  */
 

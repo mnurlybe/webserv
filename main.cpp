@@ -2,7 +2,7 @@
 
 int main()
 {
-    SimpleServer myServer;
+    SimpleServer myServer(NULL, "8080");
     myServer.launch();
     return 0;
 }

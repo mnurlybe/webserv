@@ -8,17 +8,17 @@ SimpleSocket::SimpleSocket(const char *input_node, const char *input_service)
     service = input_service;
 
     if (fill_addrinfo(node, service) != 0) {
-        std::cout << "Error: fill_addrinfo()" << std::endl;
+        std::cerr << "Error: fill_addrinfo()" << std::endl;
         exit(1);
     }
 
     if (create_socket() != 0) {
-        std::cout << "Error: create_socket()" << std::endl;
+        std::cerr << "Error: create_socket()" << std::endl;
         exit(2);
     }
 
     if (listening_socket() != 0) {
-        std::cout << "Error: listening_socket()" << std::endl;
+        std::cerr << "Error: listening_socket()" << std::endl;
         exit(3);
     }
 }

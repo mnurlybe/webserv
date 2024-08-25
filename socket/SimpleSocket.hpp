@@ -33,8 +33,4 @@ class SimpleSocket
         int get_socket();
 };
 
-/*
- * a. Add exceptions to a SimpleSocket Class;
- */
-
 #endif
